@@ -1,5 +1,3 @@
-
-
 /* MODIFICACION CARRUSEL DE TAREJTAS HTML A CSS  */
 
 const data = {
@@ -200,7 +198,6 @@ const data = {
 };
 
 let carrusel = document.getElementById("carruselPrincipal")
-
 let eventosDs = arregloFiltrosA(data.events , data.currentDate)
 pintarTarjetas(eventosDs, carrusel)
 
