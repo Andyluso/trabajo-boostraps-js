@@ -1,3 +1,7 @@
+
+
+/* MODIFICACION CARRUSEL DE TAREJTAS HTML A CSS  */
+
 const data = {
     currentDate: "2023-01-01",
     events: [
@@ -195,57 +199,69 @@ const data = {
     ],
 };
 
-let carrusel = document.getElementById("carruselPrincipal");
-console.log(carrusel);
+let carrusel = document.getElementById("carruselPrincipal")
 
-console.log(data.events[0])
+let eventosDs = arregloFiltrosA(data.events , data.currentDate)
+pintarTarjetas(eventosDs, carrusel)
 
-for (let i = 0; i < data.events.length; i += 4) {
-    let carruselItem
-    if (i < 4) {
-        carruselItem = document.createElement("div")
-        carruselItem.classList.add("carousel-item", "active")
-    } else {
-        carruselItem = document.createElement("div")
-        carruselItem.classList.add("carousel-item")
-
+/* ARREGLO FILTRO DE LAS FECHAS */
+function arregloFiltrosA(arreglo, fecha) {
+    let nuevoArreglo = []
+    for (let i = 0; i < arreglo.length; i++) {
+        if (arreglo[i].date < fecha) {
+            nuevoArreglo.push(arreglo[i])
+        }   
     }
-
-    let contenedor = document.createElement("div")
-    contenedor.classList.add("d-flex", "justify-content-around" , "p-5","m-5")
-
-    for (let j = i; j < i + 4; j++) {
-        if (data.events[j] != undefined) {
-            let card = document.createElement("div");
-            card.classList.add("card", "tamañoCard")
-            card.innerHTML = ` 
-      
-              <img src="${data.events[j].image}">
-              <div class="card-body">
-                  <h5 class="card-title">${data.events[j].name}</h5>
-                  <p class="card-text">${data.events[j].description}</p>
-              </div>
-              <div class="card" style="width: 18rem;">
-                  <ul class="list-group list-group-flush">
-                       <li class="list-group-item">Category: ${data.events[j].category}</li>
-                      <li class="list-group-item">Place: ${data.events[j].place}</li>
-                      <li class="list-group-item">Capacity: ${data.events[j].capacity}</li>
-                      <li class="list-group-item">Assistance: ${data.events[j].assistance}</li>
-                      <li class="list-group-item">Price: ${data.events[j].price}</li>
-                  </ul>
-              </div>
-      
-              <div class="card-footer">
-                  <button class="btn btn-primary"> <a href="./details.html">Detalles</a></button>
-              </div>`
-            console.log(card)
-            contenedor.appendChild(card)
-
-        }
-
-    }
-
-    carruselItem.appendChild(contenedor)
-    carrusel.appendChild(carruselItem)
-
+    return nuevoArreglo
 }
+/* CARRUSEL */
+function pintarTarjetas(arregloEvents , divPrincipal) {
+    for (let i = 0; i < arregloEvents.length; i += 4) {
+        let carruselItem
+        if (i < 4) {
+            carruselItem = document.createElement("div")
+            carruselItem.classList.add("carousel-item", "active")
+        } else {
+            carruselItem = document.createElement("div")
+            carruselItem.classList.add("carousel-item")
+    
+        }
+    
+        let contenedor = document.createElement("div")
+        contenedor.classList.add("d-flex", "justify-content-around" , "p-5","m-5")
+    
+        for (let j = i; j < i + 4; j++) {
+            if (arregloEvents[j] != undefined) {
+                let card = document.createElement("div");
+                card.classList.add("card", "tamañoCard")
+                card.innerHTML = ` 
+          
+                <img src="${arregloEvents[j].image}" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                  <h5 class="card-title">${arregloEvents[j].name}</h5>
+                  <p class="card-text">${arregloEvents[j].description}</p>
+                </div>
+                <ul class="list-group list-group-flush text-center">
+                <li class="list-group-item">Date: ${arregloEvents[j].date}</li>
+                  <li class="list-group-item">category: ${arregloEvents[j].category}</li>
+                  <li class="list-group-item">Place: ${arregloEvents[j].place}</li>
+                  <li class="list-group-item">Capacity: ${arregloEvents[j].capacity}</li>
+                  <li class="list-group-item">assistance: ${arregloEvents[j].assistance}</li>
+                  <li class="list-group-item">Price: ${arregloEvents[j].price}</li>
+                </ul>
+                <div class="card-body align-self-center">
+                <button class="btn btn-primary"> <a href="./details.html">Detalles</a></button>
+                </div>`
+                contenedor.appendChild(card)
+    
+            }
+    
+        }
+    
+        carruselItem.appendChild(contenedor)
+        divPrincipal.appendChild(carruselItem)
+    
+    }
+}
+
+
