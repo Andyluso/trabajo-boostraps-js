@@ -6,10 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amazing</title>
     <link rel="icon" href="./imagenes/favicon.png">
-    <link rel="stylesheet" href=" 	https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<link rel=" stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
@@ -30,7 +29,7 @@
                                 href="./index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active  bg-danger bg-gradient text-light" href="./Upcoming_Events.html">Upcoming Events</a>
+                            <a class="nav-link active bg-danger bg-gradient text-light" href="./Upcoming_Events.html">Upcoming Events</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-danger" href="./Past_Events.html">Past Events</a>
@@ -54,21 +53,21 @@
                     <img src="./imagenes/optional_banner_4.jpg" class="imagenescarru d-block w-100" height="300"
                         alt="...">
                     <div class="carousel-caption top-0 mt-4">
-                        <p class=" mt-5 fs-1 fw-bolder">Upcoming Events</p>
+                        <p class=" mt-5 fs-1 fw-bolder">HOME</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="./imagenes/optional_banner_2.jpg" class="imagenescarru d-block w-100 " height="300"
                         alt="...">
                     <div class="carousel-caption top-0 mt-4">
-                        <p class=" mt-5 fs-1 fw-bolder">Upcoming Events</p>
+                        <p class=" mt-5 fs-1 fw-bolder">HOME</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="./imagenes/optional_banner_3.jpg" class="imagenescarru d-block w-100" height="300"
                         alt="...">
                     <div class="carousel-caption top-0 mt-4">
-                        <p class=" mt-5 fs-1 fw-bolder">Upcoming Events</p>
+                        <p class=" mt-5 fs-1 fw-bolder">HOME</p>
                     </div>
                 </div>
             </div>
@@ -87,47 +86,29 @@
 
         <!-- FORMATO CENTRAL -->
 
-        <div class="d-flex justify-content-around mt-5 ">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                <label class="form-check-label" for="inlineCheckbox1">Category</label>
+        <div class="container">
+            <div class="d-flex justify-content-around mt-5 " id="contenedorCategorias">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        id="myInput">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" for="inlineCheckbox2">Category</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" for="inlineCheckbox2">Category</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" for="inlineCheckbox2">Category</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" for="inlineCheckbox2">Category</label>
-            </div>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
         </div>
 
         <!-- CARRUSEL DE TARJETAS -->
-
         <div id="carouselExample" class="carousel slide">
             <div id="carruselPrincipal" class="carousel-inner">
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
             </button>
-          </div>
+        </div>
 
     </main>
     <footer>
@@ -150,8 +131,10 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

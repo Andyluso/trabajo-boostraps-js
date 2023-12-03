@@ -198,67 +198,134 @@ const data = {
 };
 
 let carrusel = document.getElementById("carruselPrincipal")
-let eventosDs = arregloFiltrosA(data.events , data.currentDate)
-pintarTarjetas(eventosDs, carrusel)
 
-/* ARREGLO FILTRO DE LAS FECHAS */
-function arregloFiltrosA(arreglo, fecha) {
-    let nuevoArreglo = []
-    for (let i = 0; i < arreglo.length; i++) {
-        if (arreglo[i].date < fecha) {
-            nuevoArreglo.push(arreglo[i])
-        }   
+for (let i = 0; i < data.events.length; i += 4) {
+    let carruselItem
+    if (i < 4) {
+        carruselItem = document.createElement("div")
+        carruselItem.classList.add("carousel-item", "active")
+    } else {
+        carruselItem = document.createElement("div")
+        carruselItem.classList.add("carousel-item")
     }
-    return nuevoArreglo
-}
-/* CARRUSEL */
-function pintarTarjetas(arregloEvents , divPrincipal) {
-    for (let i = 0; i < arregloEvents.length; i += 4) {
-        let carruselItem
-        if (i < 4) {
-            carruselItem = document.createElement("div")
-            carruselItem.classList.add("carousel-item", "active")
-        } else {
-            carruselItem = document.createElement("div")
-            carruselItem.classList.add("carousel-item")
-    
-        }
-    
-        let contenedor = document.createElement("div")
-        contenedor.classList.add("d-flex", "justify-content-around" , "p-5","m-5")
-    
-        for (let j = i; j < i + 4; j++) {
-            if (arregloEvents[j] != undefined) {
-                let card = document.createElement("div");
-                card.classList.add("card", "tamañoCard")
-                card.innerHTML = ` 
-          
-                <img src="${arregloEvents[j].image}" class="card-img-top" alt="...">
+    let contenedor = document.createElement("div")
+    contenedor.classList.add("d-flex", "justify-content-around", "p-5", "m-5")
+
+    for (let j = i; j < i + 4; j++) {
+        if (data.events[j] != undefined) {
+            let card = document.createElement("div")
+            card.classList.add("card", "tamañoCard")
+            card.innerHTML = `
+             <img src="${data.events[j].image}" class="card-img-top" alt="...">
                 <div class="card-body text-center">
-                  <h5 class="card-title">${arregloEvents[j].name}</h5>
-                  <p class="card-text">${arregloEvents[j].description}</p>
+                  <h5 class="card-title">${data.events[j].name}</h5>
+                  <p class="card-text">${data.events[j].description}</p>
                 </div>
                 <ul class="list-group list-group-flush text-center">
-                <li class="list-group-item">Date: ${arregloEvents[j].date}</li>
-                  <li class="list-group-item">category: ${arregloEvents[j].category}</li>
-                  <li class="list-group-item">Place: ${arregloEvents[j].place}</li>
-                  <li class="list-group-item">Capacity: ${arregloEvents[j].capacity}</li>
-                  <li class="list-group-item">assistance: ${arregloEvents[j].assistance}</li>
-                  <li class="list-group-item">Price: ${arregloEvents[j].price}</li>
+                <li class="list-group-item">Date: ${data.events[j].date}</li>
+                  <li class="list-group-item">Place: ${data.events[j].place}</li>
+                  <li class="list-group-item">Price: ${data.events[j].price}</li>
                 </ul>
                 <div class="card-body align-self-center">
                 <button class="btn btn-primary"> <a href="./details.html">Detalles</a></button>
-                </div>`
-                contenedor.appendChild(card)
-    
-            }
-    
+                </div>
+            `
+            contenedor.appendChild(card)
         }
-    
-        carruselItem.appendChild(contenedor)
-        divPrincipal.appendChild(carruselItem)
-    
     }
+    carruselItem.appendChild(contenedor)
+    carrusel.appendChild(carruselItem)
 }
 
+// Extraer las categorías únicas
+let categorias = [...new Set(data.events.map(e => e.category))];
+
+// Generar los checkboxes de las categorías
+let contenedorCategorias = document.getElementById('contenedorCategorias');
+categorias.forEach(categoria => {
+    let div = document.createElement('div');
+    div.style.display = 'flex';
+    div.style.alignItems = 'center';
+
+    let checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = categoria;
+    checkbox.addEventListener('change', actualizarLista);
+    div.appendChild(checkbox);
+
+    let label = document.createElement('label');
+    label.htmlFor = categoria;
+    label.textContent = categoria;
+    div.appendChild(label);
+
+    contenedorCategorias.appendChild(div);
+});
+// Agrega un event listener al campo de búsqueda
+document.getElementById('myInput').addEventListener('keyup', actualizarLista);
+
+// Agrega event listeners a los checkboxes
+categorias.forEach(categoria => {
+    document.getElementById(categoria).addEventListener('change', actualizarLista);
+});
+
+function actualizarLista() {
+    // Obtén el texto de búsqueda y conviértelo a minúsculas
+    let textoBusqueda = document.getElementById('myInput').value.trim().toLowerCase();
+
+    // Obtén las categorías seleccionadas
+    let categoriasSeleccionadas = categorias.filter(categoria => document.getElementById(categoria).checked);
+
+    // Filtra los eventos
+    let eventosFiltrados = data.events.filter(evento =>
+        evento.name.toLowerCase().includes(textoBusqueda) &&
+        (categoriasSeleccionadas.length === 0 || categoriasSeleccionadas.includes(evento.category))
+    );
+
+    // Vacía el carrusel
+    carrusel.innerHTML = '';
+
+    // Verifica si hay eventos filtrados
+    if (eventosFiltrados.length > 0) {
+        // Agrega solo los eventos filtrados al carrusel
+        for (let i = 0; i < eventosFiltrados.length; i += 4) {
+            let carruselItem = document.createElement("div");
+            if (i < 4) {
+                carruselItem.classList.add("carousel-item", "active");
+            } else {
+                carruselItem.classList.add("carousel-item");
+            }
+            let contenedor = document.createElement("div");
+            contenedor.classList.add("d-flex", "justify-content-around", "p-5", "m-5");
+
+            for (let j = i; j < i + 4; j++) {
+                if (eventosFiltrados[j] != undefined) {
+                    let card = document.createElement("div");
+                    card.classList.add("card", "tamañoCard");
+                    card.innerHTML = `
+                        <img src="${eventosFiltrados[j].image}" class="card-img-top" alt="...">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">${eventosFiltrados[j].name}</h5>
+                            <p class="card-text">${eventosFiltrados[j].description}</p>
+                        </div>
+                        <ul class="list-group list-group-flush text-center">
+                            <li class="list-group-item">Date: ${eventosFiltrados[j].date}</li>
+                            <li class="list-group-item">Place: ${eventosFiltrados[j].place}</li>
+                            <li class="list-group-item">Capacity: ${eventosFiltrados[j].capacity}</li>
+                            <li class="list-group-item">Price: ${eventosFiltrados[j].price}</li>
+                        </ul>
+                        <div class="card-body align-self-center">
+                            <button class="btn btn-primary"> <a href="./details.html">Detalles</a></button>
+                        </div>
+                    `;
+                    contenedor.appendChild(card);
+                }
+            }
+            carruselItem.appendChild(contenedor);
+            carrusel.appendChild(carruselItem);
+        }
+    } else {
+        // Si no hay eventos filtrados, muestra un mensaje
+        carrusel.textContent = 'No hay eventos que coincidan con la búsqueda.';
+    }
+}
 
