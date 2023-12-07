@@ -1,21 +1,63 @@
-body {
-    background-color: #fafbfd;
+* {
+    font-family: 'Poppins', sans-serif;
 }
 
-.btn a{
+body {
+    background-color: #fafbfd;
+
+}
+
+.btn a {
     color: rgb(255, 255, 255);
     text-decoration: none;
 }
 
-.carousel-control-prev{
+.carousel-control-prev {
     width: 1.8vw;
 }
 
-.carousel-control-next{
+.carousel-control-next {
     width: 1.8vw;
 }
 
-.tamañoCard{
+
+.imagenescarru {
+    object-fit: cover;
+    height: 300px;
+}
+
+.tamañoCard {
     width: 18rem;
 }
 
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 5px;
+    max-width: 21%;
+}
+
+@media (max-width: 992px) {
+    .card {
+        max-width: 48%;
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        max-width: 100%;
+    }
+}
+
+
+
+#contenedorCategorias {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    background-color: transparent;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* Cambia esto al color que desees */
+}
