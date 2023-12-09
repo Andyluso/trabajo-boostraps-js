@@ -61,3 +61,32 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     /* Cambia esto al color que desees */
 }
+
+/* Estilos para las tabla */
+
+.principaltable{
+    text-align: center;
+    padding: 1vw;
+}
+
+.stable {
+    text-align: center;
+    width: 100%;
+    overflow-y: auto;
+    max-height: 300px;
+    border-collapse: collapse;
+    margin: 10vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.stable th,
+.stable td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.stable th {
+    background-color: #f2f2f2;
+}

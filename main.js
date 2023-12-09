@@ -26,7 +26,7 @@ fetch('https://mindhub-xj03.onrender.com/api/amazing')
                             <p class="card-text">${data.events[j].description}</p>
                         </div>
                         <div class="card-body align-self-center">
-                            <button class="btn btn-primary"> <a href="./details.html">Detalles</a></button>
+                            <button class="btn btn-primary"> <a href="./details.html?id=${data.events[j]._id}">Detalles</a></button>
                         </div>
                     `;
                     contenedor.appendChild(card);
@@ -107,7 +107,7 @@ fetch('https://mindhub-xj03.onrender.com/api/amazing')
                                     <p class="card-text">${eventosFiltrados[j].description}</p>
                                 </div>
                                 <div class="card-body align-self-center">
-                                    <button class="btn btn-primary"> <a href="./details.html">Detalles</a></button>
+                                <button class="btn btn-primary"> <a href="./details.html?id=${eventosFiltrados[j]._id}">Detalles</a></button>
                                 </div>
                             `;
                             contenedor.appendChild(card);
@@ -122,4 +122,3 @@ fetch('https://mindhub-xj03.onrender.com/api/amazing')
             }
         }
     })
-    .catch(error => console.error('Error:', error));
